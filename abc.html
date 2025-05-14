@@ -1,0 +1,1233 @@
+{\rtf1\ansi\ansicpg936\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf0 <!DOCTYPE html>\
+<html>\
+<head>\
+    <title>\uc0\u26292 \u23500 \u20998 \u26512 \u31995 \u32479  - \u23478 \u31165 \u37326 \u20861 \u20248 \u21270 \u29256 </title>\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <style>\
+        :root \{\
+            --primary: #4CAF50;\
+            --secondary: #2196F3;\
+            --text: #333333;\
+            --bg: #f8f9fa;\
+            --poultry: #87CEFA; /* \uc0\u22825 \u34013 \u33394  */\
+            --beast: #D2B48C;   /* \uc0\u22303 \u33394  */\
+            --metal: #FFD700;   /* \uc0\u37329 \u33394  */\
+            --wood: #32CD32;    /* \uc0\u26408 \u33394  */\
+            --water: #1E90FF;   /* \uc0\u27700 \u33394  */\
+            --fire: #FF4500;    /* \uc0\u28779 \u33394  */\
+            --earth: #CD853F;   /* \uc0\u22303 \u33394  */\
+        \}\
+\
+        body \{\
+            font-family: Arial, sans-serif;\
+            max-width: 100%;\
+            margin: 0;\
+            padding: 10px;\
+            background: var(--bg);\
+            font-size: 14px;\
+            color: var(--text);\
+        \}\
+\
+        .input-box \{\
+            margin: 15px 0;\
+            padding: 15px;\
+            background: white;\
+            border-radius: 8px;\
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);\
+        \}\
+\
+        #inputData \{\
+            width: 100%;\
+            height: 100px;\
+            padding: 10px;\
+            border: 2px solid var(--primary);\
+            border-radius: 6px;\
+            resize: vertical;\
+            font-size: 14px;\
+        \}\
+\
+        .btn-group \{\
+            margin: 10px 0;\
+            display: flex;\
+            gap: 8px;\
+            flex-wrap: wrap;\
+        \}\
+        .btn \{\
+            padding: 6px 12px;\
+            border: none;\
+            border-radius: 4px;\
+            cursor: pointer;\
+            font-size: 13px;\
+        \}\
+        .btn-primary \{\
+            background: var(--primary);\
+            color: white;\
+        \}\
+        .btn-secondary \{\
+            background: #e0e0e0;\
+            color: var(--text);\
+        \}\
+        .btn-copy \{\
+            background: #ff9800;\
+            color: white;\
+            margin-left: 10px;\
+        \}\
+\
+        /* \uc0\u31579 \u36873 \u22120 \u23481 \u22120 \u26679 \u24335  */\
+        .filter-container \{\
+            margin-top: 10px;\
+        \}\
+        .filter-section \{\
+            display: none;\
+            margin-bottom: 15px;\
+        \}\
+        .filter-section.active \{\
+            display: block;\
+        \}\
+        .filter-header \{\
+            display: flex;\
+            justify-content: space-between;\
+            align-items: center;\
+            margin-bottom: 8px;\
+        \}\
+        .filter-title \{\
+            color: var(--secondary);\
+            font-weight: bold;\
+            font-size: 13px;\
+        \}\
+        .toggle-all \{\
+            font-size: 12px;\
+            color: var(--primary);\
+            cursor: pointer;\
+            text-decoration: underline;\
+        \}\
+        .filter-grid \{\
+            display: grid;\
+            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));\
+            gap: 8px;\
+        \}\
+        .filter-item \{\
+            display: inline-flex;\
+            align-items: center;\
+            justify-content: center;\
+            width: 28px;\
+            height: 28px;\
+            margin: 0;\
+            border-radius 14px;\
+            background: #eee;\
+            cursor: pointer;\
+            transition: all 0.2s;\
+            font-size: 12px;\
+        \}\
+        .filter-item.active \{\
+            background: var(--primary);\
+            color: white;\
+        \}\
+\
+        /* \uc0\u32479 \u35745 \u32467 \u26524 \u26679 \u24335  */\
+        .stat-container \{\
+            margin-top: 15px;\
+        \}\
+        .stat-group \{\
+            margin-bottom: 15px;\
+            padding: 15px;\
+            background: white;\
+            border-radius: 8px;\
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);\
+            position: relative;\
+        \}\
+        .stat-header \{\
+            display: flex;\
+            justify-content: space-between;\
+            align-items: center;\
+            margin-bottom: 10px;\
+        \}\
+        .stat-title \{\
+            color: var(--secondary);\
+            font-weight: bold;\
+            font-size: 14px;\
+        \}\
+        .toggle-stat \{\
+            font-size: 12px;\
+            color: var(--primary);\
+            cursor: pointer;\
+            text-decoration: underline;\
+        \}\
+        .stat-content \{\
+            display: block;\
+        \}\
+        .stat-content.hidden \{\
+            display: none;\
+        \}\
+        .stat-line \{\
+            font-family: Consolas, monospace;\
+            margin-bottom: 8px;\
+            white-space: nowrap;\
+            overflow-x: auto;\
+            padding-bottom: 5px;\
+            font-size: 13px;\
+        \}\
+        .stat-line::-webkit-scrollbar \{\
+            height: 3px;\
+        \}\
+        .stat-line::-webkit-scrollbar-thumb \{\
+            background: #ccc;\
+            border-radius: 3px;\
+        \}\
+        \
+        /* \uc0\u26032 \u32479 \u35745 \u26684 \u24335 \u26679 \u24335  */\
+        .wx-stat-line \{\
+            margin-bottom: 10px;\
+        \}\
+        .wx-stat-header \{\
+            font-weight: bold;\
+            margin-bottom: 3px;\
+        \}\
+        .wx-stat-numbers \{\
+            margin-left: 20px;\
+        \}\
+        .sx-stat-line \{\
+            margin-bottom: 8px;\
+            padding: 6px 10px;\
+            background: #f5f5f5;\
+            border-radius: 4px;\
+        \}\
+        \
+        /* \uc0\u23478 \u31165 \u37326 \u20861 \u32479 \u35745 \u26679 \u24335  */\
+        .animal-stats \{\
+            display: flex;\
+            justify-content: space-around;\
+            margin-bottom: 15px;\
+        \}\
+        .animal-stat \{\
+            text-align: center;\
+            padding: 10px;\
+            border-radius: 8px;\
+            width: 45%;\
+        \}\
+        .poultry-stat \{\
+            background: var(--poultry);\
+        \}\
+        .beast-stat \{\
+            background: var(--beast);\
+        \}\
+        .animal-type \{\
+            font-weight: bold;\
+            font-size: 15px;\
+            margin-bottom: 5px;\
+        \}\
+        .animal-count \{\
+            font-size: 16px;\
+            color: #333;\
+        \}\
+        .animal-percent \{\
+            font-size: 14px;\
+            color: #555;\
+        \}\
+        \
+        /* \uc0\u20116 \u34892 \u32479 \u35745 \u26679 \u24335  */\
+        .wuxing-stats \{\
+            display: flex;\
+            flex-direction: column;\
+            gap: 10px;\
+        \}\
+        .wuxing-stat \{\
+            padding: 8px;\
+            border-radius: 6px;\
+        \}\
+        .wuxing-header \{\
+            display: flex;\
+            justify-content: space-between;\
+            margin-bottom: 5px;\
+            font-weight: bold;\
+        \}\
+        .wuxing-numbers \{\
+            display: flex;\
+            flex-wrap: wrap;\
+            gap: 5px;\
+        \}\
+        .wuxing-number \{\
+            padding: 2px 6px;\
+            border-radius: 3px;\
+            background: #f0f0f0;\
+        \}\
+        .metal-stat \{ background: rgba(255, 215, 0, 0.2); border-left: 3px solid var(--metal); \}\
+        .wood-stat \{ background: rgba(50, 205, 50, 0.2); border-left: 3px solid var(--wood); \}\
+        .water-stat \{ background: rgba(30, 144, 255, 0.2); border-left: 3px solid var(--water); \}\
+        .fire-stat \{ background: rgba(255, 69, 0, 0.2); border-left: 3px solid var(--fire); \}\
+        .earth-stat \{ background: rgba(205, 133, 63, 0.2); border-left: 3px solid var(--earth); \}\
+        \
+        /* \uc0\u31579 \u36873 \u32467 \u26524 \u26679 \u24335  */\
+        .filter-result \{\
+            margin: 15px 0;\
+            padding: 15px;\
+            background: white;\
+            border-radius: 8px;\
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);\
+        \}\
+        .filter-result-header \{\
+            display: flex;\
+            justify-content: space-between;\
+            align-items: center;\
+            margin-bottom: 10px;\
+        \}\
+        .filter-result-title \{\
+            color: var(--secondary);\
+            font-weight: bold;\
+            font-size: 14px;\
+        \}\
+        .filter-result-numbers \{\
+            display: flex;\
+            flex-wrap: wrap;\
+            gap: 5px;\
+            margin-top: 10px;\
+        \}\
+        .filter-result-number \{\
+            padding: 3px 8px;\
+            background: #e0e0e0;\
+            border-radius: 4px;\
+            font-family: Consolas, monospace;\
+        \}\
+        \
+        /* \uc0\u39640 \u32423 \u29992 \u25143 \u36873 \u39033 \u26679 \u24335  */\
+        .advanced-options \{\
+            margin-top: 15px;\
+            padding: 15px;\
+            background: white;\
+            border-radius: 8px;\
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);\
+        \}\
+        .advanced-header \{\
+            display: flex;\
+            justify-content: space-between;\
+            align-items: center;\
+            margin-bottom: 10px;\
+        \}\
+        .advanced-title \{\
+            color: var(--secondary);\
+            font-weight: bold;\
+            font-size: 14px;\
+        \}\
+        .toggle-advanced \{\
+            font-size: 12px;\
+            color: var(--primary);\
+            cursor: pointer;\
+            text-decoration: underline;\
+        \}\
+        .advanced-content \{\
+            display: none;\
+        \}\
+        .advanced-content.active \{\
+            display: block;\
+        \}\
+        .password-input \{\
+            margin-bottom: 10px;\
+        \}\
+        .password-input input \{\
+            width: 100%;\
+            padding: 8px;\
+            border: 1px solid #ddd;\
+            border-radius: 4px;\
+        \}\
+        .xinao-options \{\
+            margin-top: 10px;\
+        \}\
+        .xinao-option \{\
+            margin-bottom: 8px;\
+        \}\
+        .xinao-option label \{\
+            display: flex;\
+            align-items: center;\
+            cursor: pointer;\
+        \}\
+        .xinao-option input \{\
+            margin-right: 8px;\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <div id="appContainer">\
+        <h1 style="font-size:18px;margin-bottom:10px;">\uc0\u26292 \u23500 \u20998 \u26512 \u31995 \u32479 </h1>\
+        \
+        <div class="input-box">\
+            <textarea id="inputData" placeholder="\uc0\u36755 \u20837 \u31034 \u20363 \u65306 \
+01 02 03-04 05/06 \
+07\uc0\u65288 08\u65289 09 10 \u29492  11\
+\uc0\u26032 \u28595 1\u30721 \u65306 01 \
+\uc0\u26032 \u28595 4\u30721 \u65306 01 05 06 07\
+\uc0\u26032 \u28595 8\u30721 \u65306 08 01 10 11 12 13 14 15\
+\uc0\u26032 \u28595 12\u30721 \u65306 16 17 01 19 20 21 22 23 24 25 26 27"></textarea>\
+            <div class="btn-group">\
+                <button class="btn btn-primary" onclick="analyze()">\uc0\u24320 \u22987 \u20998 \u26512 </button>\
+                <button class="btn" onclick="clearAll()">\uc0\u37325 \u32622 \u31995 \u32479 </button>\
+            </div>\
+        </div>\
+\
+        <div class="input-box">\
+            <div class="btn-group">\
+                <button class="btn btn-secondary" onclick="toggleFilterSection('head')">\uc0\u22836 \u32479 \u35745 </button>\
+                <button class="btn btn-secondary" onclick="toggleFilterSection('tail')">\uc0\u23614 \u32479 \u35745 </button>\
+                <button class="btn btn-secondary" onclick="toggleFilterSection('sx')">\uc0\u32918 \u32479 \u35745 </button>\
+            </div>\
+            \
+            <div class="filter-container">\
+                <div id="headFilter" class="filter-section">\
+                    <div class="filter-header">\
+                        <span class="filter-title">\uc0\u22836 \u25968 \u31579 \u36873 </span>\
+                        <span class="toggle-all" onclick="toggleAll('heads')">\uc0\u20840 \u36873 /\u20840 \u19981 \u36873 </span>\
+                    </div>\
+                    <div class="filter-grid" id="headFilters"></div>\
+                </div>\
+                \
+                <div id="tailFilter" class="filter-section">\
+                    <div class="filter-header">\
+                        <span class="filter-title">\uc0\u23614 \u25968 \u31579 \u36873 </span>\
+                        <span class="toggle-all" onclick="toggleAll('tails')">\uc0\u20840 \u36873 /\u20840 \u19981 \u36873 </span>\
+                    </div>\
+                    <div class="filter-grid" id="tailFilters"></div>\
+                </div>\
+                \
+                <div id="sxFilter" class="filter-section">\
+                    <div class="filter-header">\
+                        <span class="filter-title">\uc0\u29983 \u32918 \u31579 \u36873 </span>\
+                        <span class="toggle-all" onclick="toggleAll('shengxiao')">\uc0\u20840 \u36873 /\u20840 \u19981 \u36873 </span>\
+                    </div>\
+                    <div class="filter-grid" id="sxFilters"></div>\
+                </div>\
+            </div>\
+        </div>\
+\
+        <!-- \uc0\u26032 \u22686 \u30340 \u31579 \u36873 \u32467 \u26524 \u23637 \u31034 \u26694  -->\
+        <div class="filter-result" id="filterResultBox">\
+            <div class="filter-result-header">\
+                <div class="filter-result-title">\uc0\u31579 \u36873 \u32467 \u26524 </div>\
+                <button class="btn btn-copy" onclick="copyFilterResult()">\uc0\u19968 \u38190 \u22797 \u21046 </button>\
+            </div>\
+            <div id="filterResultContent">\
+                \uc0\u35831 \u36873 \u25321 \u31579 \u36873 \u26465 \u20214 ...\
+            </div>\
+        </div>\
+\
+        <!-- \uc0\u39640 \u32423 \u29992 \u25143 \u36873 \u39033  -->\
+        <div class="advanced-options">\
+            <div class="advanced-header">\
+                <div class="advanced-title">\uc0\u39640 \u32423 \u29992 \u25143 \u36873 \u39033 </div>\
+                <div class="toggle-advanced" onclick="toggleAdvancedOptions()">\uc0\u26174 \u31034 \u36873 \u39033 </div>\
+            </div>\
+            <div class="advanced-content" id="advancedContent">\
+                <div class="password-input">\
+                    <input type="password" id="advancedPassword" placeholder="\uc0\u36755 \u20837 \u23494 \u30721 \u35299 \u38145 \u39640 \u32423 \u21151 \u33021 ">\
+                </div>\
+                <div class="btn-group">\
+                    <button class="btn btn-primary" onclick="unlockAdvanced()">\uc0\u35299 \u38145 </button>\
+                    <button class="btn" onclick="lockAdvanced()">\uc0\u38145 \u23450 </button>\
+                </div>\
+                <div class="xinao-options" id="xinaoOptions" style="display:none;">\
+                    <div class="xinao-option">\
+                        <label>\
+                            <input type="checkbox" name="xinaoOption" value="1"> \uc0\u26032 \u28595 1\u30721 \u32479 \u35745 \
+                        </label>\
+                    </div>\
+                    <div class="xinao-option">\
+                        <label>\
+                            <input type="checkbox" name="xinaoOption" value="4"> \uc0\u26032 \u28595 4\u30721 \u32479 \u35745 \
+                        </label>\
+                    </div>\
+                    <div class="xinao-option">\
+                        <label>\
+                            <input type="checkbox" name="xinaoOption" value="8"> \uc0\u26032 \u28595 8\u30721 \u32479 \u35745 \
+                        </label>\
+                    </div>\
+                    <div class="xinao-option">\
+                        <label>\
+                            <input type="checkbox" name="xinaoOption" value="12"> \uc0\u26032 \u28595 12\u30721 \u32479 \u35745 \
+                        </label>\
+                    </div>\
+                    <div class="xinao-option">\
+                        <label>\
+                            <input type="checkbox" name="xinaoOption" value="intersection"> \uc0\u26032 \u28595 4/8/12\u30721 \u20132 \u38598 \u32479 \u35745 \
+                        </label>\
+                    </div>\
+                </div>\
+            </div>\
+        </div>\
+\
+        <div class="input-box stat-container" id="results"></div>\
+    </div>\
+\
+<script>\
+const CONFIG = \{\
+    range: [1, 49],\
+    filters: \{\
+        heads: [0,1,2,3,4],\
+        tails: [0,1,2,3,4,5,6,7,8,9],\
+        shengxiao: \{\
+            '\uc0\u40736 ': [6,18,30,42],\
+            '\uc0\u29275 ': [5,17,29,41],\
+            '\uc0\u34382 ': [4,16,28,40],\
+            '\uc0\u20820 ': [3,15,27,39],\
+            '\uc0\u40857 ': [2,14,26,38],\
+            '\uc0\u34503 ': [1,13,25,37,49],\
+            '\uc0\u39532 ': [12,24,36,48],\
+            '\uc0\u32650 ': [11,23,35,47],\
+            '\uc0\u29492 ': [10,22,34,46],\
+            '\uc0\u40481 ': [9,21,33,45],\
+            '\uc0\u29399 ': [8,20,32,44],\
+            '\uc0\u29482 ': [7,19,31,43]\
+        \},\
+        wuxing: \{\
+            '\uc0\u37329 ': [3,4,11,12,25,26,33,34,41,42],\
+            '\uc0\u26408 ': [7,8,15,16,23,24,37,38,45,46],\
+            '\uc0\u27700 ': [13,14,21,22,29,30,43,44],\
+            '\uc0\u28779 ': [1,2,9,10,17,18,31,32,39,40,47,48],\
+            '\uc0\u22303 ': [5,6,19,20,27,28,35,36,49]\
+        \},\
+        // \uc0\u23478 \u31165 \u37326 \u20861 \u20998 \u31867 \
+        animalTypes: \{\
+            '\uc0\u23478 \u31165 ': ['\u29275 ', '\u39532 ', '\u32650 ', '\u40481 ', '\u29399 ', '\u29482 '],\
+            '\uc0\u37326 \u20861 ': ['\u40736 ', '\u34382 ', '\u20820 ', '\u40857 ', '\u34503 ', '\u29492 ']\
+        \}\
+    \},\
+    // \uc0\u39640 \u32423 \u29992 \u25143 \u23494 \u30721 \
+    advancedPassword: "888888"\
+\};\
+\
+let systemState = \{\
+    activeFilters: \{\
+        heads: new Set(CONFIG.filters.heads),\
+        tails: new Set(CONFIG.filters.tails),\
+        shengxiao: new Set(Object.keys(CONFIG.filters.shengxiao))\
+    \},\
+    uiState: \{\
+        showWuxing: false, // \uc0\u40664 \u35748 \u38544 \u34255 \u20116 \u34892 \u32479 \u35745 \
+        showShengxiao: true,\
+        activeFilterSection: null,\
+        showAdvancedOptions: false,\
+        advancedUnlocked: false\
+    \},\
+    lastResults: null,\
+    // \uc0\u26032 \u28595 \u30721 \u25968 \u25454 \
+    xinaoData: \{\
+        '1': new Set(),\
+        '4': new Set(),\
+        '8': new Set(),\
+        '12': new Set()\
+    \}\
+\};\
+\
+// \uc0\u21021 \u22987 \u21270 \u31579 \u36873 \u22120 \
+function initFilters() \{\
+    // \uc0\u22836 \u37096 \u31579 \u36873 \
+    const headContainer = document.getElementById('headFilters');\
+    headContainer.innerHTML = '';\
+    CONFIG.filters.heads.forEach(item => \{\
+        const btn = document.createElement('div');\
+        btn.className = `filter-item $\{systemState.activeFilters.heads.has(item) ? 'active' : ''\}`;\
+        btn.textContent = item;\
+        btn.onclick = () => toggleFilter('heads', item, btn);\
+        headContainer.appendChild(btn);\
+    \});\
+    \
+    // \uc0\u23614 \u37096 \u31579 \u36873 \
+    const tailContainer = document.getElementById('tailFilters');\
+    tailContainer.innerHTML = '';\
+    CONFIG.filters.tails.forEach(item => \{\
+        const btn = document.createElement('div');\
+        btn.className = `filter-item $\{systemState.activeFilters.tails.has(item) ? 'active' : ''\}`;\
+        btn.textContent = item;\
+        btn.onclick = () => toggleFilter('tails', item, btn);\
+        tailContainer.appendChild(btn);\
+    \});\
+    \
+    // \uc0\u29983 \u32918 \u31579 \u36873 \
+    const sxContainer = document.getElementById('sxFilters');\
+    sxContainer.innerHTML = '';\
+    Object.keys(CONFIG.filters.shengxiao).forEach(sx => \{\
+        const btn = document.createElement('div');\
+        btn.className = `filter-item $\{systemState.activeFilters.shengxiao.has(sx) ? 'active' : ''\}`;\
+        btn.textContent = sx;\
+        btn.onclick = () => toggleFilter('shengxiao', sx, btn);\
+        sxContainer.appendChild(btn);\
+    \});\
+\}\
+\
+function toggleFilter(type, value, btn) \{\
+    if (systemState.activeFilters[type].has(value)) \{\
+        systemState.activeFilters[type].delete(value);\
+        btn.classList.remove('active');\
+    \} else \{\
+        systemState.activeFilters[type].add(value);\
+        btn.classList.add('active');\
+    \}\
+    updateFilterResult();\
+    analyze();\
+\}\
+\
+// \uc0\u20840 \u36873 /\u20840 \u19981 \u36873 \
+function toggleAll(type) \{\
+    const allSelected = type === 'shengxiao' \
+        ? Object.keys(CONFIG.filters[type]).every(item => systemState.activeFilters[type].has(item))\
+        : CONFIG.filters[type].every(item => systemState.activeFilters[type].has(item));\
+    \
+    if (allSelected) \{\
+        // \uc0\u20840 \u19981 \u36873 \
+        systemState.activeFilters[type].clear();\
+    \} else \{\
+        // \uc0\u20840 \u36873 \
+        if (type === 'shengxiao') \{\
+            Object.keys(CONFIG.filters[type]).forEach(item => \{\
+                systemState.activeFilters[type].add(item);\
+            \});\
+        \} else \{\
+            CONFIG.filters[type].forEach(item => \{\
+                systemState.activeFilters[type].add(item);\
+            \});\
+        \}\
+    \}\
+    \
+    // \uc0\u26356 \u26032 UI\
+    const containerId = type === 'heads' ? 'headFilters' : \
+                       type === 'tails' ? 'tailFilters' : 'sxFilters';\
+    const items = document.querySelectorAll(`#$\{containerId\} .filter-item`);\
+    items.forEach(item => \{\
+        item.classList.toggle('active', !allSelected);\
+    \});\
+    \
+    updateFilterResult();\
+    analyze();\
+\}\
+\
+// \uc0\u20999 \u25442 \u31579 \u36873 \u21306 \u22359 \u26174 \u31034 \
+function toggleFilterSection(type) \{\
+    const sections = \{\
+        'head': document.getElementById('headFilter'),\
+        'tail': document.getElementById('tailFilter'),\
+        'sx': document.getElementById('sxFilter')\
+    \};\
+    \
+    // \uc0\u22914 \u26524 \u28857 \u20987 \u30340 \u26159 \u24403 \u21069 \u24050 \u28608 \u27963 \u30340 \u21306 \u22359 \u65292 \u21017 \u20851 \u38381 \u23427 \
+    if (systemState.uiState.activeFilterSection === type) \{\
+        sections[type].classList.remove('active');\
+        systemState.uiState.activeFilterSection = null;\
+    \} else \{\
+        // \uc0\u20851 \u38381 \u25152 \u26377 \u21306 \u22359 \
+        Object.keys(sections).forEach(key => \{\
+            sections[key].classList.remove('active');\
+        \});\
+        // \uc0\u25171 \u24320 \u25351 \u23450 \u21306 \u22359 \
+        sections[type].classList.add('active');\
+        systemState.uiState.activeFilterSection = type;\
+    \}\
+\}\
+\
+// \uc0\u35745 \u31639 \u23478 \u31165 \u37326 \u20861 \u32479 \u35745 \
+function calculateAnimalStats(numbers, sxStats) \{\
+    const animalStats = \{\
+        '\uc0\u23478 \u31165 ': \{ count: 0, numbers: [], details: \{\} \},\
+        '\uc0\u37326 \u20861 ': \{ count: 0, numbers: [], details: \{\} \}\
+    \};\
+    \
+    // \uc0\u35745 \u31639 \u24635 \u25968 \
+    Object.entries(CONFIG.filters.animalTypes).forEach(([type, animals]) => \{\
+        animals.forEach(animal => \{\
+            if (sxStats[animal]) \{\
+                // \uc0\u35745 \u31639 \u27599 \u20010 \u29983 \u32918 \u30340 \u24635 \u20986 \u29616 \u27425 \u25968 \
+                const animalTotal = Object.entries(sxStats[animal].countGroups)\
+                    .reduce((sum, [count, nums]) => sum + (parseInt(count) * nums.length), 0);\
+                \
+                animalStats[type].count += animalTotal;\
+                animalStats[type].details[animal] = \{\
+                    count: animalTotal,\
+                    numbers: []\
+                \};\
+                \
+                // \uc0\u25910 \u38598 \u20986 \u29616 \u30340 \u25968 \u23383 \
+                Object.entries(sxStats[animal].countGroups).forEach(([count, nums]) => \{\
+                    nums.forEach(num => \{\
+                        animalStats[type].numbers.push(num);\
+                        animalStats[type].details[animal].numbers.push(num);\
+                    \});\
+                \});\
+            \}\
+        \});\
+    \});\
+    \
+    // \uc0\u35745 \u31639 \u30334 \u20998 \u27604 \
+    const totalAnimals = animalStats['\uc0\u23478 \u31165 '].count + animalStats['\u37326 \u20861 '].count;\
+    if (totalAnimals > 0) \{\
+        animalStats['\uc0\u23478 \u31165 '].percent = ((animalStats['\u23478 \u31165 '].count / totalAnimals) * 100).toFixed(1);\
+        animalStats['\uc0\u37326 \u20861 '].percent = ((animalStats['\u37326 \u20861 '].count / totalAnimals) * 100).toFixed(1);\
+    \} else \{\
+        animalStats['\uc0\u23478 \u31165 '].percent = '0.0';\
+        animalStats['\uc0\u37326 \u20861 '].percent = '0.0';\
+    \}\
+    \
+    return animalStats;\
+\}\
+\
+// \uc0\u26680 \u24515 \u20998 \u26512 \u21151 \u33021 \
+function analyze() \{\
+    const input = document.getElementById('inputData').value;\
+    const numbers = processInput(input);\
+    const results = calculateStatistics(numbers);\
+    systemState.lastResults = results;\
+    renderResults(results);\
+\}\
+\
+function processInput(input) \{\
+    // \uc0\u35299 \u26512 \u26032 \u28595 \u30721 \u25968 \u25454 \
+    parseXinaoData(input);\
+    \
+    // \uc0\u33719 \u21462 \u36873 \u20013 \u30340 \u26032 \u28595 \u30721 \u36873 \u39033 \
+    const selectedOptions = getSelectedXinaoOptions();\
+    \
+    // \uc0\u22914 \u26524 \u26377 \u36873 \u20013 \u30340 \u26032 \u28595 \u30721 \u36873 \u39033 \u65292 \u21017 \u21482 \u20351 \u29992 \u26032 \u28595 \u30721 \u25968 \u25454 \
+    if (selectedOptions.length > 0) \{\
+        let resultNumbers = [];\
+        \
+        // \uc0\u22914 \u26524 \u26159 \u20132 \u38598 \u36873 \u39033 \
+        if (selectedOptions.includes('intersection')) \{\
+            // \uc0\u35745 \u31639 4\u12289 8\u12289 12\u30721 \u30340 \u20132 \u38598 \
+            const intersection = [...systemState.xinaoData['4']]\
+                .filter(num => systemState.xinaoData['8'].has(num) && systemState.xinaoData['12'].has(num));\
+            resultNumbers = intersection;\
+        \} else \{\
+            // \uc0\u21512 \u24182 \u25152 \u26377 \u36873 \u20013 \u30340 \u26032 \u28595 \u30721 \u25968 \u25454 \
+            selectedOptions.forEach(option => \{\
+                resultNumbers = [...resultNumbers, ...systemState.xinaoData[option]];\
+            \});\
+        \}\
+        \
+        // \uc0\u21435 \u37325 \
+        resultNumbers = [...new Set(resultNumbers)];\
+        \
+        // \uc0\u24212 \u29992 \u22836 \u23614 \u21644 \u29983 \u32918 \u31579 \u36873 \
+        return resultNumbers.filter(n => \{\
+            const head = Math.floor(n / 10);\
+            const tail = n % 10;\
+            const sxMatch = Array.from(systemState.activeFilters.shengxiao).some(sx => \
+                CONFIG.filters.shengxiao[sx].includes(n));\
+            return systemState.activeFilters.heads.has(head) &&\
+                   systemState.activeFilters.tails.has(tail) &&\
+                   sxMatch;\
+        \});\
+    \}\
+    \
+    // \uc0\u22914 \u26524 \u27809 \u26377 \u36873 \u25321 \u26032 \u28595 \u30721 \u36873 \u39033 \u65292 \u21017 \u20351 \u29992 \u26222 \u36890 \u35299 \u26512 \u26041 \u24335 \
+    return (input.match(/\\d+/g) || [])\
+        .map(Number)\
+        .filter(n => n >= CONFIG.range[0] && n <= CONFIG.range[1])\
+        .filter(n => \{\
+            const head = Math.floor(n / 10);\
+            const tail = n % 10;\
+            const sxMatch = Array.from(systemState.activeFilters.shengxiao).some(sx => \
+                CONFIG.filters.shengxiao[sx].includes(n));\
+            return systemState.activeFilters.heads.has(head) &&\
+                   systemState.activeFilters.tails.has(tail) &&\
+                   sxMatch;\
+        \});\
+\}\
+\
+// \uc0\u35299 \u26512 \u26032 \u28595 \u30721 \u25968 \u25454 \
+function parseXinaoData(input) \{\
+    // \uc0\u37325 \u32622 \u26032 \u28595 \u30721 \u25968 \u25454 \
+    systemState.xinaoData = \{\
+        '1': new Set(),\
+        '4': new Set(),\
+        '8': new Set(),\
+        '12': new Set()\
+    \};\
+    \
+    // \uc0\u21305 \u37197 \u26032 \u28595 1\u30721 \
+    const regex1 = /\uc0\u26032 [\u28595 \u22885 ]1\u30721 [\u65306 :]\\s*([\\d\\s\u12289 \u65292 ,\\.\\-~\\/\u65288 \u65289 ()]+)/;\
+    const match1 = input.match(regex1);\
+    if (match1) \{\
+        const numbers = match1[1].match(/\\d+/g) || [];\
+        numbers.forEach(num => \{\
+            const n = parseInt(num);\
+            if (n >= 1 && n <= 49) systemState.xinaoData['1'].add(n);\
+        \});\
+    \}\
+    \
+    // \uc0\u21305 \u37197 \u26032 \u28595 4\u30721 \
+    const regex4 = /\uc0\u26032 [\u28595 \u22885 ]4\u30721 [\u65306 :]\\s*([\\d\\s\u12289 \u65292 ,\\.\\-~\\/\u65288 \u65289 ()]+)/;\
+    const match4 = input.match(regex4);\
+    if (match4) \{\
+        const numbers = match4[1].match(/\\d+/g) || [];\
+        numbers.forEach(num => \{\
+            const n = parseInt(num);\
+            if (n >= 1 && n <= 49) systemState.xinaoData['4'].add(n);\
+        \});\
+    \}\
+    \
+    // \uc0\u21305 \u37197 \u26032 \u28595 8\u30721 \
+    const regex8 = /\uc0\u26032 [\u28595 \u22885 ]8\u30721 [\u65306 :]\\s*([\\d\\s\u12289 \u65292 ,\\.\\-~\\/\u65288 \u65289 ()]+)/;\
+    const match8 = input.match(regex8);\
+    if (match8) \{\
+        const numbers = match8[1].match(/\\d+/g) || [];\
+        numbers.forEach(num => \{\
+            const n = parseInt(num);\
+            if (n >= 1 && n <= 49) systemState.xinaoData['8'].add(n);\
+        \});\
+    \}\
+    \
+    // \uc0\u21305 \u37197 \u26032 \u28595 12\u30721 \
+    const regex12 = /\uc0\u26032 [\u28595 \u22885 ]12\u30721 [\u65306 :]\\s*([\\d\\s\u12289 \u65292 ,\\.\\-~\\/\u65288 \u65289 ()]+)/;\
+    const match12 = input.match(regex12);\
+    if (match12) \{\
+        const numbers = match12[1].match(/\\d+/g) || [];\
+        numbers.forEach(num => \{\
+            const n = parseInt(num);\
+            if (n >= 1 && n <= 49) systemState.xinaoData['12'].add(n);\
+        \});\
+    \}\
+\}\
+\
+// \uc0\u33719 \u21462 \u36873 \u20013 \u30340 \u26032 \u28595 \u30721 \u36873 \u39033 \
+function getSelectedXinaoOptions() \{\
+    if (!systemState.uiState.advancedUnlocked) return [];\
+    \
+    const options = document.querySelectorAll('#xinaoOptions input[name="xinaoOption"]:checked');\
+    return Array.from(options).map(opt => opt.value);\
+\}\
+\
+function calculateStatistics(numbers) \{\
+    // \uc0\u22522 \u30784 \u32479 \u35745 \
+    const base = new Map();\
+    for(let i = 1; i <= 49; i++) base.set(i, 0);\
+    numbers.forEach(n => base.set(n, (base.get(n) || 0) + 1));\
+\
+    // \uc0\u37325 \u32452 \u32479 \u35745 \u32467 \u26524 \
+    const countGroups = \{\};\
+    base.forEach((count, num) => \{\
+        if (!countGroups[count]) countGroups[count] = [];\
+        countGroups[count].push(num);\
+    \});\
+\
+    // \uc0\u20116 \u34892 \u32479 \u35745  - \u20462 \u25913 \u20026 \u35745 \u31639 \u27599 \u20010 \u20116 \u34892 \u30340 \u24635 \u20986 \u29616 \u27425 \u25968 \u21644 \u30334 \u20998 \u27604 \
+    const wuxingStats = \{\};\
+    let totalWuxingCount = 0;\
+    \
+    // \uc0\u20808 \u35745 \u31639 \u27599 \u20010 \u20116 \u34892 \u30340 \u24635 \u20986 \u29616 \u27425 \u25968 \
+    Object.entries(CONFIG.filters.wuxing).forEach(([name, nums]) => \{\
+        const total = nums.reduce((sum, n) => sum + (base.get(n) || 0), 0);\
+        wuxingStats[name] = \{\
+            total: total,\
+            numbers: nums,\
+            countGroups: \{\}\
+        \};\
+        totalWuxingCount += total;\
+    \});\
+    \
+    // \uc0\u35745 \u31639 \u30334 \u20998 \u27604 \
+    Object.keys(wuxingStats).forEach(name => \{\
+        const percent = totalWuxingCount > 0 \
+            ? ((wuxingStats[name].total / totalWuxingCount) * 100).toFixed(1)\
+            : '0.0';\
+        wuxingStats[name].percentage = percent;\
+    \});\
+\
+    // \uc0\u29983 \u32918 \u32479 \u35745 \
+    const sxStats = \{\};\
+    Object.entries(CONFIG.filters.shengxiao).forEach(([name, nums]) => \{\
+        const items = nums.map(n => (\{\
+            number: n,\
+            count: base.get(n)\
+        \}));\
+        \
+        const sxCountGroups = \{\};\
+        items.forEach(item => \{\
+            if (!sxCountGroups[item.count]) sxCountGroups[item.count] = [];\
+            sxCountGroups[item.count].push(item.number);\
+        \});\
+        \
+        sxStats[name] = \{\
+            total: items.filter(i => i.count > 0).length,\
+            countGroups: sxCountGroups,\
+            percentage: ((items.filter(i => i.count > 0).length / nums.length) * 100).toFixed(1),\
+            totalCount: items.reduce((sum, item) => sum + item.count, 0) // \uc0\u26032 \u22686 \u65306 \u35745 \u31639 \u27599 \u20010 \u29983 \u32918 \u30340 \u24635 \u20986 \u29616 \u27425 \u25968 \
+        \};\
+    \});\
+\
+    // \uc0\u23478 \u31165 \u37326 \u20861 \u32479 \u35745 \
+    const animalStats = calculateAnimalStats(numbers, sxStats);\
+\
+    return \{\
+        total: numbers.length,\
+        countGroups: countGroups,\
+        wuxingStats: wuxingStats,\
+        sxStats: sxStats,\
+        animalStats: animalStats,\
+        totalWuxingCount: totalWuxingCount\
+    \};\
+\}\
+\
+// \uc0\u26356 \u26032 \u31579 \u36873 \u32467 \u26524 \u23637 \u31034 \
+function updateFilterResult() \{\
+    const resultBox = document.getElementById('filterResultContent');\
+    const selectedNumbers = getFilteredNumbers();\
+    \
+    if (selectedNumbers.length === 0) \{\
+        resultBox.innerHTML = '\uc0\u35831 \u36873 \u25321 \u31579 \u36873 \u26465 \u20214 ...';\
+        return;\
+    \}\
+    \
+    // \uc0\u25353 \u25968 \u23383 \u25490 \u24207 \
+    const sortedNumbers = [...selectedNumbers].sort((a, b) => a - b);\
+    \
+    // \uc0\u29983 \u25104 \u32467 \u26524 HTML\
+    let html = '<div class="filter-result-numbers">';\
+    sortedNumbers.forEach(num => \{\
+        html += `<span class="filter-result-number">$\{num.toString().padStart(2, '0')\}</span>`;\
+    \});\
+    html += '</div>';\
+    html += `<div style="margin-top:10px;color:#666;">\uc0\u20849  $\{sortedNumbers.length\} \u20010 \u25968 \u23383 </div>`;\
+    \
+    resultBox.innerHTML = html;\
+\}\
+\
+// \uc0\u33719 \u21462 \u24403 \u21069 \u31579 \u36873 \u26465 \u20214 \u19979 \u30340 \u25152 \u26377 \u25968 \u23383 \
+function getFilteredNumbers() \{\
+    const result = new Set();\
+    \
+    // \uc0\u33719 \u21462 \u25152 \u26377 \u36873 \u20013 \u30340 \u29983 \u32918 \
+    const selectedShengxiao = Array.from(systemState.activeFilters.shengxiao);\
+    \
+    // \uc0\u36941 \u21382 \u25152 \u26377 \u21487 \u33021 \u30340 \u25968 \u23383 \
+    for (let num = 1; num <= 49; num++) \{\
+        const head = Math.floor(num / 10);\
+        const tail = num % 10;\
+        \
+        // \uc0\u26816 \u26597 \u22836 \u23614 \u26159 \u21542 \u31526 \u21512 \
+        const headMatch = systemState.activeFilters.heads.has(head);\
+        const tailMatch = systemState.activeFilters.tails.has(tail);\
+        \
+        // \uc0\u26816 \u26597 \u29983 \u32918 \u26159 \u21542 \u31526 \u21512 \
+        const sxMatch = selectedShengxiao.some(sx => \
+            CONFIG.filters.shengxiao[sx].includes(num));\
+        \
+        if (headMatch && tailMatch && sxMatch) \{\
+            result.add(num);\
+        \}\
+    \}\
+    \
+    return Array.from(result);\
+\}\
+\
+// \uc0\u22797 \u21046 \u31579 \u36873 \u32467 \u26524 \
+function copyFilterResult() \{\
+    const selectedNumbers = getFilteredNumbers();\
+    if (selectedNumbers.length === 0) \{\
+        alert('\uc0\u27809 \u26377 \u21487 \u22797 \u21046 \u30340 \u25968 \u23383 \u65281 ');\
+        return;\
+    \}\
+    \
+    // \uc0\u25353 \u25968 \u23383 \u25490 \u24207 \
+    const sortedNumbers = [...selectedNumbers].sort((a, b) => a - b);\
+    \
+    // \uc0\u26684 \u24335 \u21270 \u20026 \u20004 \u20301 \u25968 \u23383 \u31526 \u20018 \
+    const numbersStr = sortedNumbers.map(num => num.toString().padStart(2, '0')).join(' ');\
+    \
+    navigator.clipboard.writeText(numbersStr).then(() => \{\
+        alert('\uc0\u31579 \u36873 \u32467 \u26524 \u24050 \u22797 \u21046 \u21040 \u21098 \u36148 \u26495 \u65281 ');\
+    \});\
+\}\
+\
+// \uc0\u20462 \u25913 \u21518 \u30340 \u20116 \u34892 \u32479 \u35745 \u26684 \u24335 \u21270 \u20989 \u25968 \
+function formatWuxingStats(wuxingStats) \{\
+    // \uc0\u25353 \u30334 \u20998 \u27604 \u25490 \u24207 \
+    const sortedWuxing = Object.entries(wuxingStats)\
+        .sort((a, b) => parseFloat(b[1].percentage) - parseFloat(a[1].percentage));\
+    \
+    let html = '<div class="wuxing-stats">';\
+    \
+    sortedWuxing.forEach(([name, data]) => \{\
+        const clsName = name === '\uc0\u37329 ' ? 'metal-stat' :\
+                       name === '\uc0\u26408 ' ? 'wood-stat' :\
+                       name === '\uc0\u27700 ' ? 'water-stat' :\
+                       name === '\uc0\u28779 ' ? 'fire-stat' : 'earth-stat';\
+        \
+        html += `\
+        <div class="wuxing-stat $\{clsName\}">\
+            <div class="wuxing-header">\
+                <span>$\{name\}</span>\
+                <span>$\{data.percentage\}% ($\{data.total\}\uc0\u27425 )</span>\
+            </div>\
+            <div class="wuxing-numbers">\
+                $\{data.numbers.map(n => \{\
+                    const count = data.countGroups[n] || 0;\
+                    return `<span class="wuxing-number">$\{n.toString().padStart(2, '0')\}</span>`;\
+                \}).join('')\}\
+            </div>\
+        </div>`;\
+    \});\
+    \
+    html += '</div>';\
+    return html;\
+\}\
+\
+// \uc0\u20462 \u25913 \u21518 \u30340 \u29983 \u32918 \u32479 \u35745 \u26684 \u24335 \u21270 \u20989 \u25968 \
+function formatShengxiaoStats(sxStats) \{\
+    // \uc0\u23558 \u29983 \u32918 \u25968 \u25454 \u36716 \u25442 \u20026 \u25968 \u32452 \u24182 \u25490 \u24207 \
+    const sortedSx = Object.entries(sxStats)\
+        .map(([name, data]) => (\{\
+            name,\
+            totalCount: data.totalCount\
+        \}))\
+        .sort((a, b) => b.totalCount - a.totalCount);\
+\
+    // \uc0\u25353 \u27425 \u25968 \u20998 \u32452 \
+    const countGroups = \{\};\
+    sortedSx.forEach(sx => \{\
+        const count = sx.totalCount;\
+        if (!countGroups[count]) countGroups[count] = [];\
+        countGroups[count].push(sx.name);\
+    \});\
+\
+    let result = '';\
+    \
+    // \uc0\u29983 \u25104 \u32467 \u26524 HTML - \u25353 \u29031 \u24744 \u35201 \u27714 \u30340 \u26684 \u24335 \
+    Object.keys(countGroups)\
+        .sort((a, b) => b - a)\
+        .forEach(count => \{\
+            const sxList = countGroups[count].join(' ');\
+            const totalSx = countGroups[count].length;\
+            \
+            result += `\
+            <div class="sx-stat-line">\
+                \uc0\u12310 $\{count\}\u27425 \u12311 $\{sxList\}\u65288 \u20849 \u35745 $\{totalSx\}\u20010 \u65289 \
+            </div>`;\
+        \});\
+\
+    return result;\
+\}\
+\
+// \uc0\u28210 \u26579 \u23478 \u31165 \u37326 \u20861 \u32479 \u35745 \
+\
+function renderAnimalStats(animalStats) \{\
+    let html = `\
+    <div class="stat-group">\
+        <div class="stat-title">\uc0\u23478 \u31165 \u37326 \u20861 \u32479 \u35745 </div>\
+        <div class="stat-content">\
+            <div class="animal-stats">\
+                <div class="animal-stat beast-stat">\
+                    <div class="animal-type">\uc0\u37326 \u20861 </div>\
+                    <div class="animal-count">\uc0\u12310 $\{animalStats['\u37326 \u20861 '].count\}\u27425 \u12311 </div>\
+                    <div class="animal-percent">$\{animalStats['\uc0\u37326 \u20861 '].percent\}%</div>\
+                </div>\
+                <div class="animal-stat poultry-stat">\
+                    <div class="animal-type">\uc0\u23478 \u31165 </div>\
+                    <div class="animal-count">\uc0\u12310 $\{animalStats['\u23478 \u31165 '].count\}\u27425 \u12311 </div>\
+                    <div class="animal-percent">$\{animalStats['\uc0\u23478 \u31165 '].percent\}%</div>\
+                </div>\
+            </div>\
+        </div>\
+    </div>`;\
+    \
+    return html;\
+\}\
+\
+// \uc0\u22797 \u21046 \u20116 \u34892 \u32479 \u35745 \
+function copyWuxingStats() \{\
+    if (!systemState.lastResults) return;\
+    \
+    let text = '\uc0\u20116 \u34892 \u32479 \u35745 \u65306 \\n';\
+    const wuxingStats = systemState.lastResults.wuxingStats;\
+    \
+    // \uc0\u25353 \u30334 \u20998 \u27604 \u25490 \u24207 \
+    const sortedWuxing = Object.entries(wuxingStats)\
+        .sort((a, b) => parseFloat(b[1].percentage) - parseFloat(a[1].percentage));\
+    \
+    sortedWuxing.forEach(([name, data]) => \{\
+        text += `$\{name\}: $\{data.percentage\}% ($\{data.total\}\uc0\u27425 )\\n`;\
+        text += `\uc0\u25968 \u23383 : $\{data.numbers.map(n => n.toString().padStart(2, '0')).join(' ')\}\\n\\n`;\
+    \});\
+    \
+    navigator.clipboard.writeText(text).then(() => \{\
+        alert('\uc0\u20116 \u34892 \u32479 \u35745 \u24050 \u22797 \u21046 \u21040 \u21098 \u36148 \u26495 \u65281 ');\
+    \});\
+\}\
+\
+// \uc0\u20462 \u25913 \u21518 \u30340 \u22797 \u21046 \u29983 \u32918 \u32479 \u35745 \u21151 \u33021 \
+function copyShengxiaoStats() \{\
+    if (!systemState.lastResults) return;\
+    \
+    const sxStats = systemState.lastResults.sxStats;\
+    \
+    // \uc0\u23558 \u29983 \u32918 \u25968 \u25454 \u36716 \u25442 \u20026 \u25968 \u32452 \u24182 \u25490 \u24207 \
+    const sortedSx = Object.entries(sxStats)\
+        .map(([name, data]) => (\{\
+            name,\
+            totalCount: data.totalCount\
+        \}))\
+        .sort((a, b) => b.totalCount - a.totalCount);\
+\
+    // \uc0\u25353 \u27425 \u25968 \u20998 \u32452 \
+    const countGroups = \{\};\
+    sortedSx.forEach(sx => \{\
+        const count = sx.totalCount;\
+        if (!countGroups[count]) countGroups[count] = [];\
+        countGroups[count].push(sx.name);\
+    \});\
+\
+    let text = '\uc0\u29983 \u32918 \u32479 \u35745 \u65306 \\n';\
+    \
+    // \uc0\u29983 \u25104 \u25991 \u26412  - \u25353 \u29031 \u24744 \u35201 \u27714 \u30340 \u26684 \u24335 \
+    Object.keys(countGroups)\
+        .sort((a, b) => b - a)\
+        .forEach(count => \{\
+            const sxList = countGroups[count].join(' ');\
+            const totalSx = countGroups[count].length;\
+            \
+            text += `\uc0\u12310 $\{count\}\u27425 \u12311 $\{sxList\}\u65288 \u20849 \u35745 $\{totalSx\}\u20010 \u65289 \\n`;\
+        \});\
+\
+    navigator.clipboard.writeText(text).then(() => \{\
+        alert('\uc0\u29983 \u32918 \u32479 \u35745 \u24050 \u22797 \u21046 \u21040 \u21098 \u36148 \u26495 \u65281 ');\
+    \});\
+\}\
+\
+// \uc0\u28210 \u26579 \u32467 \u26524 \
+function renderResults(\{ total, countGroups, wuxingStats, sxStats, animalStats \}) \{\
+    const container = document.getElementById('results');\
+    let html = '';\
+    \
+    // \uc0\u22522 \u30784 \u32479 \u35745 \
+    html += `<div class="stat-group">\
+        <div class="stat-title">\uc0\u22522 \u30784 \u32479 \u35745 \u65288 \u20849  $\{total\} \u20010 \u65289 </div>\
+        <div class="stat-content">\
+            $\{Object.keys(countGroups).sort((a, b) => b - a).map(count => \
+                `<div class="stat-line">\uc0\u12310 $\{count\}\u27425 \u12311 $\{countGroups[count].sort((a, b) => a - b).map(n => n.toString().padStart(2, '0')).join(' ')\}\u65288 \u20849 \u35745 $\{countGroups[count].length\}\u20010 \u65289 </div>`\
+            ).join('')\}\
+        </div>\
+    </div>`;\
+    \
+    // \uc0\u23478 \u31165 \u37326 \u20861 \u32479 \u35745 \
+    html += renderAnimalStats(animalStats);\
+    \
+    // \uc0\u20116 \u34892 \u32479 \u35745 \
+    html += `<div class="stat-group">\
+        <div class="stat-header">\
+            <div class="stat-title">\uc0\u20116 \u34892 \u32479 \u35745 </div>\
+            <div>\
+                <span class="toggle-stat" onclick="toggleStatDisplay('wuxing')">$\{systemState.uiState.showWuxing ? '\uc0\u38544 \u34255 ' : '\u26174 \u31034 '\}</span>\
+                <button class="btn btn-copy" onclick="copyWuxingStats()">\uc0\u19968 \u38190 \u22797 \u21046 </button>\
+            </div>\
+        </div>\
+        <div class="stat-content $\{systemState.uiState.showWuxing ? '' : 'hidden'\}">\
+            $\{formatWuxingStats(wuxingStats)\}\
+        </div>\
+    </div>`;\
+    \
+    // \uc0\u29983 \u32918 \u32479 \u35745 \
+    html += `<div class="stat-group">\
+        <div class="stat-header">\
+            <div class="stat-title">\uc0\u29983 \u32918 \u32479 \u35745 </div>\
+            <div>\
+                <span class="toggle-stat" onclick="toggleStatDisplay('shengxiao')">$\{systemState.uiState.showShengxiao ? '\uc0\u38544 \u34255 ' : '\u26174 \u31034 '\}</span>\
+                <button class="btn btn-copy" onclick="copyShengxiaoStats()">\uc0\u19968 \u38190 \u22797 \u21046 </button>\
+            </div>\
+        </div>\
+        <div class="stat-content $\{systemState.uiState.showShengxiao ? '' : 'hidden'\}">\
+            $\{formatShengxiaoStats(sxStats)\}\
+        </div>\
+    </div>`;\
+    \
+    container.innerHTML = html;\
+\}\
+\
+// \uc0\u20999 \u25442 \u32479 \u35745 \u26174 \u31034 \
+function toggleStatDisplay(type) \{\
+    if (type === 'wuxing') \{\
+        systemState.uiState.showWuxing = !systemState.uiState.showWuxing;\
+    \} else if (type === 'shengxiao') \{\
+        systemState.uiState.showShengxiao = !systemState.uiState.showShengxiao;\
+    \}\
+    // \uc0\u37325 \u26032 \u28210 \u26579 \u32467 \u26524 \
+    const input = document.getElementById('inputData').value;\
+    const numbers = processInput(input);\
+    renderResults(calculateStatistics(numbers));\
+\}\
+\
+// \uc0\u20999 \u25442 \u39640 \u32423 \u36873 \u39033 \u26174 \u31034 \
+function toggleAdvancedOptions() \{\
+    systemState.uiState.showAdvancedOptions = !systemState.uiState.showAdvancedOptions;\
+    const content = document.getElementById('advancedContent');\
+    content.classList.toggle('active', systemState.uiState.showAdvancedOptions);\
+\}\
+\
+// \uc0\u35299 \u38145 \u39640 \u32423 \u21151 \u33021 \
+function unlockAdvanced() \{\
+    const password = document.getElementById('advancedPassword').value;\
+    if (password === CONFIG.advancedPassword) \{\
+        systemState.uiState.advancedUnlocked = true;\
+        document.getElementById('xinaoOptions').style.display = 'block';\
+        alert('\uc0\u39640 \u32423 \u21151 \u33021 \u24050 \u35299 \u38145 \u65281 ');\
+    \} else \{\
+        alert('\uc0\u23494 \u30721 \u38169 \u35823 \u65281 ');\
+    \}\
+\}\
+\
+// \uc0\u38145 \u23450 \u39640 \u32423 \u21151 \u33021 \
+function lockAdvanced() \{\
+    systemState.uiState.advancedUnlocked = false;\
+    document.getElementById('xinaoOptions').style.display = 'none';\
+    document.getElementById('advancedPassword').value = '';\
+    alert('\uc0\u39640 \u32423 \u21151 \u33021 \u24050 \u38145 \u23450 \u65281 ');\
+\}\
+\
+function clearAll() \{\
+    document.getElementById('inputData').value = '';\
+    systemState.activeFilters = \{\
+        heads: new Set(CONFIG.filters.heads),\
+        tails: new Set(CONFIG.filters.tails),\
+        shengxiao: new Set(Object.keys(CONFIG.filters.shengxiao))\
+    \};\
+    document.querySelectorAll('.filter-item').forEach(btn => \
+        btn.classList.add('active'));\
+    document.getElementById('results').innerHTML = '';\
+    document.getElementById('filterResultContent').innerHTML = '\uc0\u35831 \u36873 \u25321 \u31579 \u36873 \u26465 \u20214 ...';\
+    \
+    // \uc0\u37325 \u32622 UI\u29366 \u24577 \
+    systemState.uiState = \{\
+        showWuxing: false,\
+        showShengxiao: true,\
+        activeFilterSection: null,\
+        showAdvancedOptions: false,\
+        advancedUnlocked: false\
+    \};\
+    \
+    // \uc0\u38544 \u34255 \u25152 \u26377 \u31579 \u36873 \u21306 \u22359 \
+    document.querySelectorAll('.filter-section').forEach(section => \{\
+        section.classList.remove('active');\
+    \});\
+    \
+    // \uc0\u37325 \u32622 \u26032 \u28595 \u30721 \u25968 \u25454 \
+    systemState.xinaoData = \{\
+        '1': new Set(),\
+        '4': new Set(),\
+        '8': new Set(),\
+        '12': new Set()\
+    \};\
+    \
+    // \uc0\u38544 \u34255 \u39640 \u32423 \u36873 \u39033 \
+    document.getElementById('advancedContent').classList.remove('active');\
+    document.getElementById('xinaoOptions').style.display = 'none';\
+    document.getElementById('advancedPassword').value = '';\
+\}\
+\
+// \uc0\u21021 \u22987 \u21270 \
+initFilters();\
+</script>\
+</body>\
+</html>\
+\
+}
